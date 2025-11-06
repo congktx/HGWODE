@@ -128,3 +128,9 @@ def HGWODE(func, dim=30, num_wolves=30, max_iter=500, lb=-100, ub=100, F=0.5, CR
         alpha_pos, alpha_score = wolves[alpha].copy(), fitness[alpha]
 
     return alpha_pos, alpha_score
+
+# name_fitness = 'f3'
+# best_pos, best_val = multi_finess.HGWODE(multi_finess.cec_functions[name_fitness], dim=30, max_iter=500)
+# print(name_fitness, 'best value:', best_val)
+# print(name_fitness, 'best path:', best_pos)
+# paint.visualize_path_3d(start, end, threats, best_pos)
