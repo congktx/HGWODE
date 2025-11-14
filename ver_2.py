@@ -191,15 +191,36 @@ def HGWODE_UAV_3D(start, end, threats, num_wolves=25, num_points=5,
 
 # ----------------------------- Demo run -----------------------------
 start = np.array([0,0,0])
-end   = np.array([1000,1000,0])
+end   = np.array([1000,1000,1000])
+# threats = [
+#   (150,220,50,500),
+#   (300,300,100,800),
+#   (600,600,150,600),
+#   (500,200,120,1000)
+# ]
 threats = [
-  (150,220,50,500),
-  (300,300,100,800),
-  (600,600,150,600),
-  (500,200,120,1000)
+  (300,150,75,1000),
+  (250,600,100,800),
+  (600,100,100,500),
+  (500,750,100,1000),
+  (850,550,75,500),
+  (450,300,75,750),
+  (750,350,50,1000),
+  (200,200,75,1000),
+  (800,800,50,800),
+  (600,600,80,800),
 ]
+max_iter=500
+checkpoints=[100,200,300,400,500]
 
-final_path, best_paths, best_costs = HGWODE_UAV_3D(start,end,threats,num_wolves=25,num_points=5,max_iter=2000,checkpoints=[100,200,1000,1200,2000])
+final_path, best_paths, best_costs = HGWODE_UAV_3D(
+  start,end,
+  threats,
+  num_wolves=25,
+  num_points=5,
+  max_iter=max_iter,
+  checkpoints=checkpoints
+)
 
 print(best_costs)
 

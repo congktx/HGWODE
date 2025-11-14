@@ -127,7 +127,7 @@ def HGWODE_UAV_3D(start, end, threats, num_wolves=20, num_points=5,
 
 # ----------------------------- Demo run -----------------------------
 start = np.array([0,0,0])
-end   = np.array([1000,1000,0])
+end   = np.array([1000,1000,1000])
 threats = [
   (150,220,50,500),
   (300,300,100,800),
