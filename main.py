@@ -107,11 +107,11 @@ threats = [
     (500, 200, 120, 1000)
 ]
 
-# best_path, best_cost = HGWODE_UAV_3D(start, end, threats, num_wolves=30, num_points=5, max_iter=200)
-# print("Best cost:", best_cost)
-# print("Best path:")
-# print(best_path)
-# paint.visualize_path_3d(start, end, threats, best_path)
+best_path, best_cost = HGWODE_UAV_3D(start, end, threats, num_wolves=30, num_points=5, max_iter=200)
+print("Best cost:", best_cost)
+print("Best path:")
+print(best_path)
+paint.visualize_path_3d(start, end, threats, best_path)
 
 best_pos, best_val = multi_finess.HGWODE(multi_finess.cec_functions["f3"], dim=30, max_iter=500)
 print("f3 best value:", best_val)
