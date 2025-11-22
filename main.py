@@ -10,8 +10,7 @@ def collision_penalty(points, threats):
     for i in range(len(points)-1):
         p1, p2 = points[i], points[i+1]
         for (cx, cy, r, h) in threats:
-            # kiểm tra đoạn [p1,p2] có nằm trong trụ (x,y) và [0,h] không
-            for t in np.linspace(0, 1, 5):  # lấy 5 điểm trên đoạn
+            for t in np.linspace(0, 1, 5):  
                 p = p1 + t*(p2-p1)
                 dist_xy = np.sqrt((p[0]-cx)**2 + (p[1]-cy)**2)
                 if dist_xy < r and 0 <= p[2] <= h:
@@ -99,19 +98,36 @@ def HGWODE_UAV_3D(start, end, threats, num_wolves=20, num_points=5,
 
 start = np.array([0, 0, 0])
 end   = np.array([1000, 1000, 1000])
-
-# Threats: (cx, cy, radius, height)
 threats = [
-    (300, 300, 100, 800),
-    (600, 600, 150, 600),
-    (500, 200, 120, 1000)
+  (300,150,75,1000),
+  (250,600,100,800),
+  (600,100,100,500),
+  (500,750,100,1000),
+  (850,550,75,500),
+  (450,300,75,750),
+  (750,350,50,1000),
+  (200,200,75,1000),
+  (800,800,50,800),
+  (600,600,80,800),
 ]
 
-best_path, best_cost = HGWODE_UAV_3D(start, end, threats, num_wolves=30, num_points=5, max_iter=200)
-print("Best cost:", best_cost)
-print("Best path:")
-print(best_path)
-paint.visualize_path_3d(start, end, threats, best_path)
+best_path, best_cost = HGWODE_UAV_3D(
+  start, 
+  end, 
+  threats, 
+  num_wolves=30, 
+  num_points=8, 
+  max_iter=200
+)
+print("Best cost: ", best_cost)
+print("Best path: ", best_path)
+paint.visualize_paths_3d_and_topview_with_bspline(
+  start, 
+  end, 
+  threats, 
+  {"0":best_path},
+  samples=400
+)
 
-best_pos, best_val = multi_finess.HGWODE(multi_finess.cec_functions["f3"], dim=30, max_iter=500)
-print("f3 best value:", best_val)
+# best_pos, best_val = multi_finess.HGWODE(multi_finess.cec_functions["f3"], dim=30, max_iter=500)
+# print("f3 best value:", best_val)
